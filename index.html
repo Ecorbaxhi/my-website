@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name | Portfolio</title>
+  <meta name="description" content="Portfolio website of Your Name — Software Developer" />
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Fixed Navigation -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="logo">Your<span>Name</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav-menu" id="navMenu">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Home / Hero Section -->
+  <section id="home" class="section hero">
+    <div class="container hero-content fade-in">
+      <p class="hero-greeting">Hello, I'm</p>
+      <h1 class="hero-name">Your Name</h1>
+      <h2 class="hero-title">Software Developer</h2>
+      <p class="hero-desc">
+        I build clean, responsive, and user-friendly web experiences.
+        Welcome to my portfolio.
+      </p>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="assets/resume/resume.pdf" class="btn btn-outline" download>Download Resume</a>
+      </div>
+      <div class="hero-socials">
+        <a href="https://github.com/your-github-username" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <img src="assets/images/github-icon.svg" alt="GitHub" />
+        </a>
+        <a href="https://linkedin.com/in/your-linkedin-username" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <img src="assets/images/linkedin-icon.svg" alt="LinkedIn" />
+        </a>
+      </div>
+    </div>
+    <a href="#about" class="scroll-down" aria-label="Scroll to About section">&#8595;</a>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section-title fade-in">About Me</h2>
+      <div class="about-content">
+        <div class="about-image fade-in">
+          <img src="assets/images/profile.svg" alt="Your Name" />
+        </div>
+        <div class="about-text fade-in">
+          <p>
+            I'm a passionate developer with experience building web applications
+            from front to back. I enjoy turning ideas into real, working products
+            and continuously learning new technologies.
+          </p>
+          <p>
+            When I'm not coding, I like exploring new tools, contributing to
+            open source, and improving my problem-solving skills.
+          </p>
+          <ul class="about-info">
+            <li><strong>Name:</strong> Your Name</li>
+            <li><strong>Email:</strong> your.email@example.com</li>
+            <li><strong>Location:</strong> Your City, Country</li>
+            <li><strong>Availability:</strong> Open to opportunities</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="section alt-bg">
+    <div class="container">
+      <h2 class="section-title fade-in">Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item fade-in">
+          <div class="timeline-date">2024 — Present</div>
+          <div class="timeline-content">
+            <h3>Job Title</h3>
+            <h4>Company Name</h4>
+            <p>Describe your role, responsibilities, and achievements here.</p>
+          </div>
+        </div>
+        <div class="timeline-item fade-in">
+          <div class="timeline-date">2022 — 2024</div>
+          <div class="timeline-content">
+            <h3>Previous Job Title</h3>
+            <h4>Previous Company</h4>
+            <p>Describe your role, responsibilities, and achievements here.</p>
+          </div>
+        </div>
+        <div class="timeline-item fade-in">
+          <div class="timeline-date">2018 — 2022</div>
+          <div class="timeline-content">
+            <h3>Degree Name</h3>
+            <h4>University / School</h4>
+            <p>Describe your education, relevant coursework, or honors here.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects & Skills Section -->
+  <section id="projects" class="section">
+    <div class="container">
+      <h2 class="section-title fade-in">Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card fade-in">
+          <img src="assets/images/project1.svg" alt="Project One" />
+          <div class="project-info">
+            <h3>Project One</h3>
+            <p>A short description of what this project does and the problem it solves.</p>
+            <div class="project-tags">
+              <span>HTML</span><span>CSS</span><span>JavaScript</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/your-github-username/project-one" target="_blank" rel="noopener noreferrer">Code</a>
+              <a href="https://your-live-demo-link.com" target="_blank" rel="noopener noreferrer">Live Demo</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-card fade-in">
+          <img src="assets/images/project2.svg" alt="Project Two" />
+          <div class="project-info">
+            <h3>Project Two</h3>
+            <p>A short description of what this project does and the problem it solves.</p>
+            <div class="project-tags">
+              <span>React</span><span>Node.js</span><span>MongoDB</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/your-github-username/project-two" target="_blank" rel="noopener noreferrer">Code</a>
+              <a href="https://your-live-demo-link.com" target="_blank" rel="noopener noreferrer">Live Demo</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-card fade-in">
+          <img src="assets/images/project3.svg" alt="Project Three" />
+          <div class="project-info">
+            <h3>Project Three</h3>
+            <p>A short description of what this project does and the problem it solves.</p>
+            <div class="project-tags">
+              <span>Python</span><span>Flask</span><span>SQL</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/your-github-username/project-three" target="_blank" rel="noopener noreferrer">Code</a>
+              <a href="https://your-live-demo-link.com" target="_blank" rel="noopener noreferrer">Live Demo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section-title fade-in" id="skills">Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card fade-in">
+          <span>HTML5</span>
+          <div class="skill-bar"><div class="skill-fill" style="width: 90%"></div></div>
+        </div>
+        <div class="skill-card fade-in">
+          <span>CSS3</span>
+          <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div>
+        </div>
+        <div class="skill-card fade-in">
+          <span>JavaScript</span>
+          <div class="skill-bar"><div class="skill-fill" style="width: 80%"></div></div>
+        </div>
+        <div class="skill-card fade-in">
+          <span>Git & GitHub</span>
+          <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div>
+        </div>
+        <div class="skill-card fade-in">
+          <span>React</span>
+          <div class="skill-bar"><div class="skill-fill" style="width: 75%"></div></div>
+        </div>
+        <div class="skill-card fade-in">
+          <span>Node.js</span>
+          <div class="skill-bar"><div class="skill-fill" style="width: 70%"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section alt-bg">
+    <div class="container">
+      <h2 class="section-title fade-in">Contact Me</h2>
+      <div class="contact-content fade-in">
+        <p class="contact-desc">
+          Have a project in mind or just want to say hi? Feel free to reach out.
+        </p>
+        <div class="contact-details">
+          <a href="mailto:your.email@example.com" class="contact-item">
+            <span>Email</span> your.email@example.com
+          </a>
+          <a href="https://github.com/your-github-username" target="_blank" rel="noopener noreferrer" class="contact-item">
+            <span>GitHub</span> github.com/your-github-username
+          </a>
+          <a href="https://linkedin.com/in/your-linkedin-username" target="_blank" rel="noopener noreferrer" class="contact-item">
+            <span>LinkedIn</span> linkedin.com/in/your-linkedin-username
+          </a>
+        </div>
+
+        <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+          <div class="form-row">
+            <input type="text" name="name" placeholder="Your Name" required />
+            <input type="email" name="email" placeholder="Your Email" required />
+          </div>
+          <input type="text" name="subject" placeholder="Subject" required />
+          <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; <span id="year"></span> Your Name. All rights reserved.</p>
+  </footer>
+
+  <a href="#home" class="back-to-top" id="backToTop" aria-label="Back to top">&#8593;</a>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

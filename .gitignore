@@ -1,0 +1,6 @@
+# node/OS junk (not used in this static site, kept for safety)
+.DS_Store
+Thumbs.db
+node_modules/
+.vscode/
+*.log
