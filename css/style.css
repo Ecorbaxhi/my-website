@@ -374,6 +374,13 @@ img {
   margin-bottom: 8px;
 }
 
+.timeline-location {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+  opacity: 0.75;
+}
+
 /* ===== Education ===== */
 .education-date {
   display: inline-block;
