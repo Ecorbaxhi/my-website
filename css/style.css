@@ -399,6 +399,25 @@ img {
   display: flex;
   flex-direction: column;
   gap: 60px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.education-entry {
+  border-left: 2px solid var(--color-secondary);
+  padding-left: 24px;
+}
+
+.education-text h3 {
+  font-size: 1.4rem;
+  margin-bottom: 4px;
+}
+
+.education-text h4 {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  font-weight: 500;
+  margin-bottom: 4px;
 }
 
 .education-date {
