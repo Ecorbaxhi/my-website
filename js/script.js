@@ -9,7 +9,7 @@
 
   const DOT_COLOR = "rgba(226, 114, 91, 0.85)";
   const LINE_COLOR = "243, 241, 234";
-  const LINK_DISTANCE = 160;
+  const LINK_DISTANCE = 192;
   let particles = [];
   let width, height, dpr;
 
@@ -27,8 +27,8 @@
     particles = Array.from({ length: density }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.08,
-      vy: (Math.random() - 0.5) * 0.08,
+      vx: (Math.random() - 0.5) * 0.096,
+      vy: (Math.random() - 0.5) * 0.096,
       r: Math.random() * 1.4 + 0.6,
     }));
   }
