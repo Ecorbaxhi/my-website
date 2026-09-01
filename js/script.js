@@ -1,3 +1,81 @@
+// ===== Hero Particle/Wave Background =====
+(function initHeroCanvas() {
+  const canvas = document.getElementById("heroCanvas");
+  if (!canvas) return;
+
+  const ctx = canvas.getContext("2d");
+  const hero = canvas.parentElement;
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const DOT_COLOR = "rgba(226, 114, 91, 0.85)";
+  const LINE_COLOR = "74, 124, 99";
+  const LINK_DISTANCE = 140;
+  let particles = [];
+  let width, height, dpr;
+
+  function resize() {
+    dpr = window.devicePixelRatio || 1;
+    width = hero.clientWidth;
+    height = hero.clientHeight;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const density = Math.min(90, Math.floor((width * height) / 14000));
+    particles = Array.from({ length: density }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.25,
+      vy: (Math.random() - 0.5) * 0.25,
+      r: Math.random() * 1.6 + 0.8,
+    }));
+  }
+
+  function step() {
+    ctx.clearRect(0, 0, width, height);
+
+    for (const p of particles) {
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0 || p.x > width) p.vx *= -1;
+      if (p.y < 0 || p.y > height) p.vy *= -1;
+    }
+
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const a = particles[i];
+        const b = particles[j];
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < LINK_DISTANCE) {
+          ctx.strokeStyle = `rgba(${LINE_COLOR}, ${0.35 * (1 - dist / LINK_DISTANCE)})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    ctx.fillStyle = DOT_COLOR;
+    for (const p of particles) {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    if (!prefersReducedMotion) requestAnimationFrame(step);
+  }
+
+  resize();
+  window.addEventListener("resize", resize);
+  step();
+})();
+
 // ===== Mobile Navigation Toggle =====
 const navToggle = document.getElementById("navToggle");
 const navMenu = document.getElementById("navMenu");
