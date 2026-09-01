@@ -311,67 +311,71 @@ img {
   gap: 10px;
 }
 
-/* ===== Timeline (Experience) ===== */
-.timeline {
-  position: relative;
-  max-width: 750px;
+/* ===== Experience ===== */
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  max-width: 800px;
   margin: 0 auto;
-  padding-left: 30px;
-  border-left: 3px solid var(--color-border);
 }
 
-.timeline-item {
-  position: relative;
-  margin-bottom: 40px;
-  padding-left: 20px;
+.experience-group {
+  display: flex;
+  flex-direction: column;
 }
 
-.timeline-item::before {
-  content: "";
-  position: absolute;
-  left: -39px;
-  top: 4px;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--color-primary);
-  border: 3px solid var(--color-bg);
-  box-shadow: 0 0 0 3px var(--color-primary);
+.experience-entry {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
 }
 
-.timeline-date {
+.experience-photo {
+  width: 100px;
+  height: 100px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.experience-photo img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+
+.experience-connector {
+  width: 2px;
+  height: 30px;
+  background: var(--color-border);
+  margin-left: 49px;
+}
+
+.experience-date {
   font-size: 0.9rem;
   color: var(--color-primary);
   font-weight: 600;
   margin-bottom: 4px;
 }
 
-.timeline-header {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 6px;
-}
-
-.company-logo {
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 5px;
-  flex-shrink: 0;
-}
-
-.timeline-content h3 {
+.experience-details h3 {
   font-size: 1.2rem;
 }
 
-.timeline-content h4 {
+.experience-details h4 {
   font-size: 1rem;
   color: var(--color-text-light);
   font-weight: 500;
-  margin-bottom: 8px;
+}
+
+.experience-details p {
+  margin-top: 8px;
+  color: var(--color-text-light);
 }
 
 .timeline-location {
@@ -679,6 +683,17 @@ img {
 
   .about-info {
     grid-template-columns: 1fr;
+  }
+
+  .experience-entry {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .experience-connector {
+    margin-left: 0;
+    align-self: center;
   }
 
   .form-row {
