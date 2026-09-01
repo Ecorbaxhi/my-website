@@ -386,6 +386,12 @@ img {
 }
 
 /* ===== Education ===== */
+.education-list {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
 .education-date {
   display: inline-block;
   background: var(--color-bg-alt);
@@ -394,6 +400,15 @@ img {
   font-weight: 600;
   padding: 4px 10px;
   border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.education-gpa {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--color-secondary);
+  font-weight: 600;
+  margin-top: 4px;
   margin-bottom: 12px;
 }
 
@@ -406,7 +421,7 @@ img {
   font-size: 1rem;
   color: var(--color-text-light);
   font-weight: 500;
-  margin-bottom: 12px;
+  margin-bottom: 4px;
 }
 
 /* ===== Projects ===== */
