@@ -378,11 +378,20 @@ img {
   color: var(--color-text-light);
 }
 
+.experience-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
 .timeline-location {
-  display: block;
   font-size: 0.8rem;
   color: var(--color-text-light);
   opacity: 0.75;
+  white-space: nowrap;
+  padding-top: 4px;
 }
 
 /* ===== Education ===== */
