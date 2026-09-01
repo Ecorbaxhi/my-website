@@ -346,6 +346,23 @@ img {
   margin-bottom: 4px;
 }
 
+.timeline-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 6px;
+}
+
+.company-logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 5px;
+  flex-shrink: 0;
+}
+
 .timeline-content h3 {
   font-size: 1.2rem;
 }
