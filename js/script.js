@@ -1,4 +1,4 @@
-// ===== Hero Dotted Dome / Leaf Background =====
+// ===== Hero Particle Network Background =====
 (function initHeroCanvas() {
   const canvas = document.getElementById("heroCanvas");
   if (!canvas) return;
@@ -7,45 +7,11 @@
   const hero = canvas.parentElement;
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const DOT_RGB = "74, 196, 150";
-  const CORAL = "#e2725b";
-  const flowSeed = Math.random() * 1000;
+  const DOT_COLOR = "rgba(226, 114, 91, 0.85)";
+  const LINE_COLOR = "243, 241, 234";
+  const LINK_DISTANCE = 160;
+  let particles = [];
   let width, height, dpr;
-  let grid = [];
-  let bump;
-  let leaves = [];
-
-  // dome center sits toward the top-right, like a hill rising out of the frame
-  function buildScene() {
-    const spacing = Math.max(14, Math.min(22, width / 45));
-    grid = [];
-    for (let y = -spacing; y <= height + spacing; y += spacing) {
-      const row = [];
-      for (let x = -spacing; x <= width + spacing; x += spacing) {
-        row.push({ x, y });
-      }
-      grid.push(row);
-    }
-
-    bump = {
-      cx: width * 0.72,
-      cy: height * 0.4,
-      radius: Math.max(width, height) * 0.62,
-      height: Math.min(width, height) * 0.28,
-    };
-
-    const rand = (min, max) => min + Math.random() * (max - min);
-    leaves = Array.from({ length: 16 }, () => {
-      const angle = rand(0, Math.PI * 2);
-      const dist = rand(0, bump.radius * 0.85);
-      return {
-        x: bump.cx + Math.cos(angle) * dist,
-        y: bump.cy + Math.sin(angle) * dist * 0.6,
-        size: rand(3, 7),
-        rot: rand(0, Math.PI * 2),
-      };
-    });
-  }
 
   function resize() {
     dpr = window.devicePixelRatio || 1;
@@ -56,79 +22,58 @@
     canvas.style.width = `${width}px`;
     canvas.style.height = `${height}px`;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    buildScene();
+
+    const density = Math.min(28, Math.max(12, Math.floor((width * height) / 55000)));
+    particles = Array.from({ length: density }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.08,
+      vy: (Math.random() - 0.5) * 0.08,
+      r: Math.random() * 1.4 + 0.6,
+    }));
   }
 
-  // pulls points upward near the dome center so rows read as curved contour lines
-  function falloffAt(x, y) {
-    const dx = x - bump.cx;
-    const dy = y - bump.cy;
-    const dist = Math.sqrt(dx * dx + dy * dy * 2.2);
-    return { dist, falloff: Math.exp(-(dist * dist) / (2 * bump.radius * bump.radius)) };
-  }
-
-  function displacedY(x, y, t, falloff, dist) {
-    const pulse = 1 + 0.04 * Math.sin(t * 0.0006 + dist * 0.01);
-    return y - bump.height * falloff * pulse;
-  }
-
-  function drawLeaf(x, y, size, rot) {
-    ctx.save();
-    ctx.translate(x, y);
-    ctx.rotate(rot);
-    ctx.fillStyle = CORAL;
-    ctx.beginPath();
-    ctx.moveTo(0, -size);
-    ctx.quadraticCurveTo(size * 0.9, -size * 0.2, 0, size);
-    ctx.quadraticCurveTo(-size * 0.9, -size * 0.2, 0, -size);
-    ctx.fill();
-    ctx.restore();
-  }
-
-  function draw(t) {
+  function step() {
     ctx.clearRect(0, 0, width, height);
 
-    for (const row of grid) {
-      for (const p of row) {
-        const { dist, falloff } = falloffAt(p.x, p.y);
-        if (falloff < 0.03) continue;
-        const y = displacedY(p.x, p.y, t, falloff, dist);
-        const alpha = 0.08 + falloff * 0.55;
-        const r = 0.6 + falloff * 1.4;
-        ctx.fillStyle = `rgba(${DOT_RGB}, ${alpha})`;
-        ctx.beginPath();
-        ctx.arc(p.x, y, r, 0, Math.PI * 2);
-        ctx.fill();
+    for (const p of particles) {
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0 || p.x > width) p.vx *= -1;
+      if (p.y < 0 || p.y > height) p.vy *= -1;
+    }
+
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const a = particles[i];
+        const b = particles[j];
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < LINK_DISTANCE) {
+          ctx.strokeStyle = `rgba(${LINE_COLOR}, ${0.18 * (1 - dist / LINK_DISTANCE)})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
       }
     }
 
-    // bright flowing line threading across the dome
-    ctx.beginPath();
-    const steps = 60;
-    for (let i = 0; i <= steps; i++) {
-      const x = width * 1.1 * (i / steps) - width * 0.05;
-      const baseY = bump.cy + bump.radius * 0.05;
-      const { dist, falloff } = falloffAt(x, baseY);
-      const y = displacedY(x, baseY, t, falloff, dist) + Math.sin(i * 0.35 + t * 0.0008 + flowSeed) * 14;
-      if (i === 0) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-    }
-    ctx.strokeStyle = "rgba(243, 241, 234, 0.55)";
-    ctx.lineWidth = 1.4;
-    ctx.stroke();
-
-    for (const leaf of leaves) {
-      const { dist, falloff } = falloffAt(leaf.x, leaf.y);
-      const y = displacedY(leaf.x, leaf.y, t, falloff, dist);
-      drawLeaf(leaf.x, y, leaf.size, leaf.rot);
+    ctx.fillStyle = DOT_COLOR;
+    for (const p of particles) {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
     }
 
-    if (!prefersReducedMotion) requestAnimationFrame(draw);
+    if (!prefersReducedMotion) requestAnimationFrame(step);
   }
 
   resize();
   window.addEventListener("resize", resize);
-  requestAnimationFrame(draw);
+  step();
 })();
 
 // ===== Mobile Navigation Toggle =====
